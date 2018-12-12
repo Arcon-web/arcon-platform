@@ -1,12 +1,14 @@
 <template>
   <main>
+    <div class="title-container">
+      <h1>{{ GameData[activeSlide].name }}</h1>
+    </div>
     <carousel :perPage="1" :paginationEnabled="false" :scrollPerPage="false" :mouseDrag="false" :spacePadding="400" :navigate-to="activeSlide">
       <slide v-for="(game, key, i) in GameData" :key="i">
         <Game :key="i" :image="game.image"></Game>
       </slide>
     </carousel>
     <div class="title-container">
-      <h1>{{ GameData[activeSlide].name }}</h1>
       <p>{{ GameData[activeSlide].description }}</p>
     </div>
   </main>
