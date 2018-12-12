@@ -30,31 +30,32 @@ nav {
 }
 
 main {
-	.games_container {
+	section.VueCarousel {
+
+		div.VueCarousel-wrapper {
+			div.VueCarousel-inner {
+				div.VueCarousel-slide {
+					div {
+						padding: 0 15%;
+						img {
+							width: 100%;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.title-container {
 		width: 40%;
 		margin: 0 auto;
-		position: relative;
-
-		.game {
-			width: 100%;
-		}
-
-		.game_left {
-			position: absolute;
-			left: -120%;
-		}
-
-		.game_right {
-			position: absolute;
-			left: 120%;
-		}
 
 		h1 {
 			font-family: $primary_font;
 			font-size: $primary_font_size;
 			text-align: center;
 		}
-
+	
 		p {
 			font-family: $secondary_font;
 			font-size: $secondary_font_size;
