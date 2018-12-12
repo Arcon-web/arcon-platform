@@ -26,27 +26,31 @@
     data() {
       return {
         GameData: [
-          { name: "Pacman", description: "Pacman is a good game", image: "game_pacman.png", url: "google.com"},
-          { name: "Pong", description: "Pong is gebaseerd op tafeltennis. De naam Pong is afgeleid van pingpong. Het spel werkt met twee batjes en een balletje en twee muren aan de zijkant. De bedoeling van het spel is dat het balletje achter het batje van de tegenspeler terechtkomt.", image: "game_pong.png", url: "google.com"},
-          { name: "Tetris", description: "Tetris is a good game", image: "game_tetris.png", url: "google.com"},
-          { name: "Pacman", description: "Pacman is a good game", image: "game_pacman.png", url: "google.com"},
-          { name: "Pong", description: "Pong is gebaseerd op tafeltennis. De naam Pong is afgeleid van pingpong. Het spel werkt met twee batjes en een balletje en twee muren aan de zijkant. De bedoeling van het spel is dat het balletje achter het batje van de tegenspeler terechtkomt.", image: "game_pong.png", url: "google.com"},
-          { name: "Tetris", description: "Tetris is a good game", image: "game_tetris.png", url: "google.com"}
+          { name: "Pacman", description: "Pacman is a cool game", image: "game_pacman.png", url: "https://google.com"},
+          { name: "Pong", description: "Pong is gebaseerd op tafeltennis. De naam Pong is afgeleid van pingpong. Het spel werkt met twee batjes en een balletje en twee muren aan de zijkant. De bedoeling van het spel is dat het balletje achter het batje van de tegenspeler terechtkomt.", image: "game_pong.png", url: "https://google.com"},
+          { name: "Tetris", description: "Tetris is a good game", image: "game_tetris.png", url: "https://google.com"},
+          { name: "Pacman", description: "Pacman is a cool game", image: "game_pacman.png", url: "https://google.com"},
+          { name: "Pong", description: "Pong is gebaseerd op tafeltennis. De naam Pong is afgeleid van pingpong. Het spel werkt met twee batjes en een balletje en twee muren aan de zijkant. De bedoeling van het spel is dat het balletje achter het batje van de tegenspeler terechtkomt.", image: "game_pong.png", url: "https://google.com"},
+          { name: "Tetris", description: "Tetris is a good game", image: "game_tetris.png", url: "https://google.com"}
         ],
         activeSlide: 0
       };
     },
     methods: {
       handleKeyPress: function (event) {
-        if (event.key == "a") {
+        if (event.code == "KeyQ") {
           if (this.activeSlide > 0) {
             this.activeSlide -= 1;
           }
         }
-        if (event.key == "z") {
+        if (event.code == "KeyW") {
           if (this.activeSlide < this.GameData.length - 1) {
             this.activeSlide += 1;
           }
+        }
+        if (event.code == "Space") {
+          window.location.href = this.GameData[this.activeSlide].url;
+          //window.location.replace(this.GameData[this.activeSlide].url);
         }
       }
     },
