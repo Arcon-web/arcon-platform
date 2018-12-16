@@ -1,15 +1,20 @@
 <template>
   <main>
-    <div class="title-container">
-      <h1>{{ games[activeSlide].title }}</h1>
+    <div v-if="games == null">
+      
     </div>
-    <carousel :perPage="1" :paginationEnabled="false" :scrollPerPage="false" :mouseDrag="false" :spacePadding="400" :navigate-to="activeSlide">
-      <slide v-for="(game, key, i) in games" :key="i">
-        <Game :key="i" :image="game.game_image"></Game>
-      </slide>
-    </carousel>
-    <div class="title-container">
-      <p>{{ games[activeSlide].description }}</p>
+    <div v-else>
+      <div class="title-container">
+        <h1>{{ games[activeSlide].title }}</h1>
+      </div>
+      <carousel :perPage="1" :paginationEnabled="false" :scrollPerPage="false" :mouseDrag="false" :spacePadding="400" :navigate-to="activeSlide">
+        <slide v-for="(game, key, i) in games" :key="i">
+          <Game :key="i" :image="game.game_image"></Game>
+        </slide>
+      </carousel>
+      <div class="title-container">
+        <p>{{ games[activeSlide].description }}</p>
+      </div>
     </div>
   </main>
 </template>
@@ -51,52 +56,63 @@
     },
     mounted: function() {
       const axios = require('axios');
-      let USER_TOKEN;
-      var self = this
+      var USER_TOKEN;
+      var self = this;
+      var urls = {
+        register: "http://arcon.mats.vingerhoets.mtantwerp.eu/api/register",
+        login: "http://arcon.mats.vingerhoets.mtantwerp.eu/api/login",
+        games: "http://arcon.mats.vingerhoets.mtantwerp.eu/api/games"
+      };
+      var userdata = {
+        name: "JensVanAssche",
+        email: "jens.va@hotmail.com",
+        password: "wachtwoord123",
+        console_id: "abc123"
+      }
 
-      axios.post('http://arcon.mats.vingerhoets.mtantwerp.eu/api/register', {
-        name: 'JensVanAssche',
-        email: 'jens.va@hotmail.com',
-        password: 'wachtwoord123',
-        console_id: 'abc123'
+      // POST REGISTER
+      axios.post(urls.register, {
+        name: userdata.name,
+        email: userdata.email,
+        password: userdata.password,
+        console_id: userdata.console_id
       })
       .then(function (response) {
-        console.log("register:");
-        console.log(response.data);
+        // console.log("register:");
+        // console.log(response.data);
       })
       .catch(function (error) {
         console.log(error);
       });
 
-      axios.post('http://arcon.mats.vingerhoets.mtantwerp.eu/api/login', {
-        email: 'jens.va@hotmail.com',
-        password: 'wachtwoord123',
-        console_id: 'abc123'
+      // POST LOGIN
+      axios.post(urls.login, {
+        email: userdata.email,
+        password: userdata.password,
+        console_id: userdata.console_id
       })
       .then(function (response) {
-        console.log("login:");
-        console.log(response.data);
+        // console.log("login:");
+        // console.log(response.data);
         USER_TOKEN = response.data.data.access_token;
         const AuthStr = 'Bearer '.concat(USER_TOKEN);
 
-        axios.get('http://arcon.mats.vingerhoets.mtantwerp.eu/api/games', { headers: { Authorization: AuthStr }})
+        // GET GAMES
+        axios.get(urls.games, { headers: { Authorization: AuthStr }})
         .then(response => {
-          console.log(response.data);
+          // console.log("games:");
+          // console.log(response.data);
           self.games = response.data;
         })
         .catch(function (error) {
-          // handle error
           console.log(error);
         })
         .then(function () {
-          // always executed
         });
       })
       .catch(function (error) {
         console.log(error);
       });
-
-      
 
       document.addEventListener('keypress', this.handleKeyPress);
     }
