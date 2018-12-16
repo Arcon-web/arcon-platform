@@ -1,15 +1,15 @@
 <template>
   <main>
     <div class="title-container">
-      <h1>{{ GameData[activeSlide].name }}</h1>
+      <h1>{{ games[activeSlide].title }}</h1>
     </div>
     <carousel :perPage="1" :paginationEnabled="false" :scrollPerPage="false" :mouseDrag="false" :spacePadding="400" :navigate-to="activeSlide">
-      <slide v-for="(game, key, i) in GameData" :key="i">
-        <Game :key="i" :image="game.image"></Game>
+      <slide v-for="(game, key, i) in games" :key="i">
+        <Game :key="i" :image="game.game_image"></Game>
       </slide>
     </carousel>
     <div class="title-container">
-      <p>{{ GameData[activeSlide].description }}</p>
+      <p>{{ games[activeSlide].description }}</p>
     </div>
   </main>
 </template>
@@ -27,14 +27,7 @@
     },
     data() {
       return {
-        GameData: [
-          { name: "Pacman", description: "Pacman is a cool game", image: "game_pacman.png", url: "https://google.com"},
-          { name: "Pong", description: "Pong is gebaseerd op tafeltennis. De naam Pong is afgeleid van pingpong. Het spel werkt met twee batjes en een balletje en twee muren aan de zijkant. De bedoeling van het spel is dat het balletje achter het batje van de tegenspeler terechtkomt.", image: "game_pong.png", url: "https://google.com"},
-          { name: "Tetris", description: "Tetris is a good game", image: "game_tetris.png", url: "https://google.com"},
-          { name: "Pacman", description: "Pacman is a cool game", image: "game_pacman.png", url: "https://google.com"},
-          { name: "Pong", description: "Pong is gebaseerd op tafeltennis. De naam Pong is afgeleid van pingpong. Het spel werkt met twee batjes en een balletje en twee muren aan de zijkant. De bedoeling van het spel is dat het balletje achter het batje van de tegenspeler terechtkomt.", image: "game_pong.png", url: "https://google.com"},
-          { name: "Tetris", description: "Tetris is a good game", image: "game_tetris.png", url: "https://google.com"}
-        ],
+        games: null,
         activeSlide: 0
       };
     },
@@ -46,17 +39,65 @@
           }
         }
         if (event.code == "KeyW") {
-          if (this.activeSlide < this.GameData.length - 1) {
+          if (this.activeSlide < this.games.length - 1) {
             this.activeSlide += 1;
           }
         }
         if (event.code == "Space") {
-          window.location.href = this.GameData[this.activeSlide].url;
+          window.location.href = this.games[this.activeSlide].game_link;
           //window.location.replace(this.GameData[this.activeSlide].url);
         }
       }
     },
     mounted: function() {
+      const axios = require('axios');
+      let USER_TOKEN;
+      var self = this
+
+      axios.post('http://arcon.mats.vingerhoets.mtantwerp.eu/api/register', {
+        name: 'JensVanAssche',
+        email: 'jens.va@hotmail.com',
+        password: 'wachtwoord123',
+        console_id: 'abc123'
+      })
+      .then(function (response) {
+        console.log("register:");
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+      axios.post('http://arcon.mats.vingerhoets.mtantwerp.eu/api/login', {
+        email: 'jens.va@hotmail.com',
+        password: 'wachtwoord123',
+        console_id: 'abc123'
+      })
+      .then(function (response) {
+        console.log("login:");
+        console.log(response.data);
+        USER_TOKEN = response.data.data.access_token;
+        const AuthStr = 'Bearer '.concat(USER_TOKEN);
+
+        axios.get('http://arcon.mats.vingerhoets.mtantwerp.eu/api/games', { headers: { Authorization: AuthStr }})
+        .then(response => {
+          console.log(response.data);
+          self.games = response.data;
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        })
+        .then(function () {
+          // always executed
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+      
+
       document.addEventListener('keypress', this.handleKeyPress);
     }
   }
