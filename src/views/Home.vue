@@ -50,7 +50,6 @@
         }
         if (event.code == "Space") {
           window.location.href = this.games[this.activeSlide].game_link;
-          //window.location.replace(this.GameData[this.activeSlide].url);
         }
       }
     },
