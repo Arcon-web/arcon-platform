@@ -7,7 +7,7 @@
       <div class="title-container">
         <h1>{{ games[activeSlide].title }}</h1>
       </div>
-      <carousel :perPage="1" :paginationEnabled="false" :scrollPerPage="false" :mouseDrag="false" :spacePadding="400" :navigate-to="activeSlide">
+      <carousel :perPage="1" :paginationEnabled="false" :scrollPerPage="false" :mouseDrag="false" :spacePadding="350" :navigate-to="activeSlide">
         <slide v-for="(game, key, i) in games" :key="i">
           <Game :key="i" :image="game.game_image"></Game>
         </slide>

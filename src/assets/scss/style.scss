@@ -20,12 +20,12 @@ nav {
 
 	.nav_logo {
 		width: 200px;
-		align-self: center
+		align-self: center;
 	}
 
 	.nav_icon {
 		width: 60px;
-		align-self: center
+		align-self: center;
 	}
 }
 
@@ -55,12 +55,14 @@ main {
 			font-family: $primary_font;
 			font-size: $primary_font_size;
 			text-align: center;
+			font-size: 5em;
 		}
 	
 		p {
 			font-family: $secondary_font;
 			font-size: $secondary_font_size;
 			text-align: center;
+			font-size: 1.5em;
 		}
 	}
 }
