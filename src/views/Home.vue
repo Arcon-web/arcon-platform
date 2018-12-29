@@ -1,13 +1,18 @@
 <template>
   <main>
-    <div v-if="games == null">
-      
-    </div>
+    <div v-if="games == null"></div>
     <div v-else>
       <div class="title-container">
         <h1>{{ games[activeSlide].title }}</h1>
       </div>
-      <carousel :perPage="1" :paginationEnabled="false" :scrollPerPage="false" :mouseDrag="false" :spacePadding="350" :navigate-to="activeSlide">
+      <carousel
+        :perPage="1"
+        :paginationEnabled="false"
+        :scrollPerPage="false"
+        :mouseDrag="false"
+        :spacePadding="350"
+        :navigate-to="activeSlide"
+      >
         <slide v-for="(game, key, i) in games" :key="i">
           <Game :key="i" :image="game.game_image"></Game>
         </slide>
@@ -57,10 +62,11 @@
       const axios = require('axios');
       var USER_TOKEN;
       var self = this;
+      const baseUrl = 'http://arcon.mats.vingerhoets.mtantwerp.eu/api';
       var urls = {
-        register: "http://arcon.mats.vingerhoets.mtantwerp.eu/api/register",
-        login: "http://arcon.mats.vingerhoets.mtantwerp.eu/api/login",
-        games: "http://arcon.mats.vingerhoets.mtantwerp.eu/api/games"
+        register: `${baseUrl}/register`,
+        login: `${baseUrl}/login`,
+        games: `${baseUrl}/games`
       };
       var userdata = {
         name: "JensVanAssche",
