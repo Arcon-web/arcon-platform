@@ -68,27 +68,28 @@
         login: `${baseUrl}/login`,
         games: `${baseUrl}/games`
       };
-      var userdata = {
-        name: "JensVanAssche",
-        email: "jens.va@hotmail.com",
-        password: "wachtwoord123",
-        console_id: "abc123"
+
+      const userdata = {
+        name: 'JensVanAssche',
+        email: 'mats@gmail.com',
+        password: 'secret',
+        console_id: 'abc123',
       }
 
       // POST REGISTER
-      axios.post(urls.register, {
-        name: userdata.name,
-        email: userdata.email,
-        password: userdata.password,
-        console_id: userdata.console_id
-      })
-      .then(function (response) {
-        // console.log("register:");
-        // console.log(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      // axios.post(urls.register, {
+      //   name: userdata.name,
+      //   email: userdata.email,
+      //   password: userdata.password,
+      //   console_id: userdata.console_id
+      // })
+      // .then(function (response) {
+      //   // console.log("register:");
+      //   // console.log(response.data);
+      // })
+      // .catch(function (error) {
+      //   console.log(error);
+      // });
 
       // POST LOGIN
       axios.post(urls.login, {
