@@ -38,7 +38,8 @@
     data() {
       return {
         games: null,
-        activeSlide: 0
+        activeSlide: 0,
+        authStr: ""
       };
     },
     methods: {
@@ -54,7 +55,7 @@
           }
         }
         if (event.code == "Space") {
-          this.$router.push({ name: 'friends', params: { gameTitle: this.games[this.activeSlide].title, gameUrl: this.games[this.activeSlide].game_link } });
+          this.$router.push({ name: 'friends', params: { authStr: this.authStr, gameTitle: this.games[this.activeSlide].title, gameUrl: this.games[this.activeSlide].game_link } });
         }
       }
     },
@@ -98,16 +99,12 @@
         console_id: userdata.console_id
       })
       .then(function (response) {
-        // console.log("login:");
-        // console.log(response.data);
         USER_TOKEN = response.data.data.access_token;
-        const AuthStr = 'Bearer '.concat(USER_TOKEN);
+        self.authStr = 'Bearer '.concat(USER_TOKEN);
 
         // GET GAMES
-        axios.get(urls.games, { headers: { Authorization: AuthStr }})
+        axios.get(urls.games, { headers: { Authorization: self.authStr }})
         .then(response => {
-          // console.log("games:");
-          // console.log(response.data);
           self.games = response.data;
         })
         .catch(function (error) {
