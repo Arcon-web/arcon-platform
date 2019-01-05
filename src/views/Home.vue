@@ -54,7 +54,7 @@
           }
         }
         if (event.code == "Space") {
-          window.location.href = this.games[this.activeSlide].game_link;
+          this.$router.push({ name: 'friends', params: { gameTitle: this.games[this.activeSlide].title, gameUrl: this.games[this.activeSlide].game_link } });
         }
       }
     },

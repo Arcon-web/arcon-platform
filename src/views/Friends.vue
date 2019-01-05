@@ -1,7 +1,7 @@
 <template>
   <main>
     <div v-if="friends == null">
-      
+      <p>No friends to display</p>
     </div>
     <div v-else>
       <div class="title-container">
@@ -58,12 +58,15 @@
           }
         }
         if (event.code == "Space") {
-          window.location.href = this.friends[this.activeSlide].url;
+          window.location.href = this.$route.params.gameUrl;
+        }
+        if (event.code == "KeyB") {
+          window.location.href = "/";
         }
       }
     },
     mounted: function() {
-        document.addEventListener('keypress', this.handleKeyPress);
+      document.addEventListener('keypress', this.handleKeyPress);
     }
   }
 </script>
