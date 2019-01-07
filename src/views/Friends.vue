@@ -36,7 +36,7 @@
     data() {
       return {
         friends: null,
-        activeSlide: 1
+        activeSlide: 0
       };
     },
     methods: {
@@ -46,11 +46,11 @@
             this.activeSlide -= 1;
           }
           else {
-            this.activeSlide = this.games.length - 1;
+            this.activeSlide = this.friends.friend.length - 1;
           }
         }
         if (event.code == "KeyW") {
-          if (this.activeSlide < this.games.length - 1) {
+          if (this.activeSlide < this.friends.friend.length - 1) {
             this.activeSlide += 1;
           }
           else {
