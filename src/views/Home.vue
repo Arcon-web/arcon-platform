@@ -38,7 +38,7 @@
     data() {
       return {
         games: null,
-        activeSlide: 0,
+        activeSlide: 1,
         authStr: ""
       };
     },
@@ -48,10 +48,16 @@
           if (this.activeSlide > 0) {
             this.activeSlide -= 1;
           }
+          else {
+            this.activeSlide = this.games.length - 1;
+          }
         }
         if (event.code == "KeyW") {
           if (this.activeSlide < this.games.length - 1) {
             this.activeSlide += 1;
+          }
+          else {
+            this.activeSlide = 0;
           }
         }
         if (event.code == "Space") {

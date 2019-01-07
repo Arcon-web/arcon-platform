@@ -1,7 +1,7 @@
 <template>
   <main>
     <div v-if="friends == null">
-      <p>No friends to display</p>
+      
     </div>
     <div v-else>
       <div class="title-container">
@@ -36,7 +36,7 @@
     data() {
       return {
         friends: null,
-        activeSlide: 0
+        activeSlide: 1
       };
     },
     methods: {
@@ -45,10 +45,16 @@
           if (this.activeSlide > 0) {
             this.activeSlide -= 1;
           }
+          else {
+            this.activeSlide = this.games.length - 1;
+          }
         }
         if (event.code == "KeyW") {
-          if (this.activeSlide < this.friends.friend.length - 1) {
+          if (this.activeSlide < this.games.length - 1) {
             this.activeSlide += 1;
+          }
+          else {
+            this.activeSlide = 0;
           }
         }
         if (event.code == "Space") {
