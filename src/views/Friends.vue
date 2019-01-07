@@ -62,7 +62,7 @@
     mounted: function() {
       const axios = require('axios');
       var self = this;
-      const baseUrl = 'http://arcon.mats.vingerhoets.mtantwerp.eu/api';
+      const baseUrl = 'https://arcon.mats.vingerhoets.mtantwerp.eu/api';
       var urls = {
         friends: `${baseUrl}/friends`
       };

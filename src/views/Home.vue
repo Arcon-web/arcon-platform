@@ -63,7 +63,7 @@
       const axios = require('axios');
       var USER_TOKEN;
       var self = this;
-      const baseUrl = 'http://arcon.mats.vingerhoets.mtantwerp.eu/api';
+      const baseUrl = 'https://arcon.mats.vingerhoets.mtantwerp.eu/api';
       var urls = {
         register: `${baseUrl}/register`,
         login: `${baseUrl}/login`,
