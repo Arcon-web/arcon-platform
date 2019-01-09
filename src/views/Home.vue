@@ -44,7 +44,7 @@
     },
     methods: {
       handleKeyPress: function (event) {
-        if (event.code == "KeyQ") {
+        if (event.code == "KeyR") {
           if (this.activeSlide > 0) {
             this.activeSlide -= 1;
           }
@@ -60,7 +60,7 @@
             this.activeSlide = 0;
           }
         }
-        if (event.code == "Space") {
+        if (event.code == "KeyE") {
           this.$router.push({ name: 'friends', params: { authStr: this.authStr, gameTitle: this.games[this.activeSlide].title, gameUrl: this.games[this.activeSlide].game_link } });
         }
       }

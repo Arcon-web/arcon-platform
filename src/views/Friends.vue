@@ -41,7 +41,7 @@
     },
     methods: {
       handleKeyPress: function (event) {
-        if (event.code == "KeyQ") {
+        if (event.code == "KeyR") {
           if (this.activeSlide > 0) {
             this.activeSlide -= 1;
           }
@@ -57,10 +57,10 @@
             this.activeSlide = 0;
           }
         }
-        if (event.code == "Space") {
+        if (event.code == "KeyE") {
           window.location.href = this.$route.params.gameUrl;
         }
-        if (event.code == "KeyB") {
+        if (event.code == "KeyQ") {
           window.location.href = "/";
         }
       }
