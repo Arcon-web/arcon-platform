@@ -44,7 +44,8 @@
     },
     methods: {
       handleKeyPress: function (event) {
-        if (event.code == "KeyR") {
+        //left
+        if (event.code == "KeyQ") {
           if (this.activeSlide > 0) {
             this.activeSlide -= 1;
           }
@@ -52,6 +53,7 @@
             this.activeSlide = this.games.length - 1;
           }
         }
+        //right
         if (event.code == "KeyW") {
           if (this.activeSlide < this.games.length - 1) {
             this.activeSlide += 1;
@@ -60,6 +62,7 @@
             this.activeSlide = 0;
           }
         }
+        //start
         if (event.code == "KeyE") {
           this.$router.push({ name: 'friends', params: { authStr: this.authStr, gameTitle: this.games[this.activeSlide].title, gameUrl: this.games[this.activeSlide].game_link } });
         }

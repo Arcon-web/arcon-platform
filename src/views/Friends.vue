@@ -41,7 +41,8 @@
     },
     methods: {
       handleKeyPress: function (event) {
-        if (event.code == "KeyR") {
+        //left
+        if (event.code == "KeyQ") {
           if (this.activeSlide > 0) {
             this.activeSlide -= 1;
           }
@@ -49,6 +50,7 @@
             this.activeSlide = this.friends.friend.length - 1;
           }
         }
+        //right
         if (event.code == "KeyW") {
           if (this.activeSlide < this.friends.friend.length - 1) {
             this.activeSlide += 1;
@@ -57,10 +59,12 @@
             this.activeSlide = 0;
           }
         }
+        //start
         if (event.code == "KeyE") {
           window.location.href = this.$route.params.gameUrl;
         }
-        if (event.code == "KeyQ") {
+        //back
+        if (event.code == "KeyR") {
           window.location.href = "/";
         }
       }
