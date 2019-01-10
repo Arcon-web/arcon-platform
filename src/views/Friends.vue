@@ -19,6 +19,24 @@
         <p>Last played: {{ friends[activeSlide].last_played }}</p>
       </div> -->
     </div>
+    <div class="buttons">
+        <div>
+          <img src="@/assets/images/bluebutton.png">
+          <span>Left</span>
+        </div>
+        <div>
+          <img src="@/assets/images/redbutton.png">
+          <span>Right</span>
+        </div>
+        <div>
+          <img src="@/assets/images/yellowbutton.png">
+          <span>Select</span>
+        </div>
+        <div>
+          <img src="@/assets/images/graybutton.png">
+          <span>Back</span>
+        </div>
+      </div>
   </main>
 </template>
 
